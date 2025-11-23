@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDD Test Generator - AI-Powered Gherkin Feature Generator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+<script src="/static/js/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🤖 BDD Test Generator</h1>
+            <p class="subtitle">AI-Powered Gherkin Feature Generator for Hover & Popup Testing</p>
+        </header>
+
+        <!-- Configuration Panel -->
+        <div class="card">
+            <h2>⚙️ Configuration</h2>
+            <div class="config-grid">
+                <div class="form-group">
+                    <label for="url">Website URL *</label>
+                    <input type="text" 
+                           id="url" 
+                           placeholder="https://www.example.com" 
+                           value="https://www.tivdak.com/patient-stories/">
+                </div>
+
+                <div class="form-group">
+                    <label for="llm-provider">LLM Provider</label>
+                    <select id="llm-provider">
+                        <option value="groq">Groq (Default)</option>
+                        <option value="openai">OpenAI</option>
+                        <option value="claude">Claude</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="llm-model">Model</label>
+                    <select id="llm-model">
+                        <option value="openai/gpt-oss-20b">openai/gpt-oss-20b</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="headless" checked>
+                        Headless Browser
+                    </label>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="generate-btn" class="btn btn-primary">
+                    🚀 Generate Tests
+                </button>
+                <button id="clear-btn" class="btn btn-secondary">
+                    🗑️ Clear
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress Panel -->
+        <div id="progress-panel" class="card" style="display: none;">
+            <h2>📊 Progress</h2>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <div class="progress-info">
+                    <span id="progress-percent">0%</span>
+                    <span id="progress-status">Initializing...</span>
+                </div>
+            </div>
+            
+            <div id="current-step" class="current-step">
+                Waiting to start...
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div id="results-panel" class="card" style="display: none;">
+            <h2>✅ Generated Features</h2>
+            
+            <div class="results-grid">
+                <div class="feature-box">
+                    <h3>🎯 Hover Interactions</h3>
+                    <div id="hover-preview" class="feature-preview"></div>
+                    <button id="download-hover" class="btn btn-download" disabled>
+                        ⬇️ Download Hover Tests
+                    </button>
+                </div>
+
+                <div class="feature-box">
+                    <h3>💬 Popup/Modal Interactions</h3>
+                    <div id="popup-preview" class="feature-preview"></div>
+                    <button id="download-popup" class="btn btn-download" disabled>
+                        ⬇️ Download Popup Tests
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task History -->
+        <div class="card">
+            <h2>📋 Task History</h2>
+            <div id="task-history" class="task-history">
+                <p class="text-muted">No tasks yet. Generate your first test!</p>
+            </div>
+            <button id="refresh-history" class="btn btn-secondary">
+                🔄 Refresh History
+            </button>
+        </div>
+
+        <!-- Logs Panel -->
+        <div id="logs-panel" class="card" style="display: none;">
+            <h2>📝 Execution Logs</h2>
+            <div id="logs-content" class="logs-content"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with ❤️ using FastAPI, Playwright, and LLMs (Groq/OpenAI/Claude)</p>
+            <p class="text-muted">Production-grade BDD test automation solution</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+</body>
+</html>
